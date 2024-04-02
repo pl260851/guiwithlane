@@ -29,7 +29,7 @@ def detect_lanes(frame):
 
 
 def video_loop():
-    cap = cv2.VideoCapture('/Users/aidahuang/Downloads/pvid.mov')  # Adjust the path to your video
+    cap = cv2.VideoCapture('/Users/aidahuang/Downloads/pvid.mov') 
     if not cap.isOpened():
         messagebox.showerror("Error", "Error opening video file")
         return
@@ -43,7 +43,7 @@ def video_loop():
             photo = ImageTk.PhotoImage(image)
 
            
-            video.image = photo  # Keep a reference
+            video.image = photo  
             video.create_image(0, 0, anchor=tk.NW, image=photo)
 
             root.update_idletasks()
@@ -64,7 +64,7 @@ def createGUI(user_firstname):
     vidlabel = Label(root, text="Video")
     vidlabel.grid(row=0, column=0)
 
-    global video  # Make 'video' global to access it in video_loop
+    global video 
     video = Canvas(root, width=200, height=200, background='black')
     video.grid(row=1, column=0)
 
