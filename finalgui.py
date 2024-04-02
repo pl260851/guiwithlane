@@ -1,4 +1,4 @@
-# Combined imports from both scripts
+
 import tkinter as tk
 from tkinter import messagebox, Button, Label, Canvas
 import cv2
@@ -7,14 +7,14 @@ from PIL import Image, ImageTk
 import threading
 
 
-# Function to draw lines on the image (for lane detection)
+
 def draw_lines(img, lines):
     for line in lines:
         for x1, y1, x2, y2 in line:
             cv2.line(img, (x1, y1), (x2, y2), (0, 255, 0), 3)
 
 
-# Function to detect lanes in the given frame
+
 def detect_lanes(frame):
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     blur = cv2.GaussianBlur(gray, (5, 5), 0)
@@ -27,7 +27,7 @@ def detect_lanes(frame):
     return combo_image
 
 
-# Function handling video capture and display
+
 def video_loop():
     cap = cv2.VideoCapture('/Users/aidahuang/Downloads/pvid.mov')  # Adjust the path to your video
     if not cap.isOpened():
@@ -42,8 +42,7 @@ def video_loop():
             image = Image.fromarray(lane_frame)
             photo = ImageTk.PhotoImage(image)
 
-            # To prevent the reference to the PhotoImage object from being garbage collected,
-            # which would clear the image displayed by the tkinter Label or Canvas
+           
             video.image = photo  # Keep a reference
             video.create_image(0, 0, anchor=tk.NW, image=photo)
 
@@ -60,7 +59,7 @@ root.geometry("510x510")
 root.title("Control")
 
 
-# Create the GUI for the future
+
 def createGUI(user_firstname):
     vidlabel = Label(root, text="Video")
     vidlabel.grid(row=0, column=0)
@@ -92,11 +91,11 @@ def createGUI(user_firstname):
 
     messagebox.showinfo("Logged in!", "Welcome, " + user_firstname)
 
-    # Start video processing in a thread to keep GUI responsive
+    
     threading.Thread(target=video_loop).start()
 
 
-# Example user first name
+
 createGUI("User")
 
 root.mainloop()
