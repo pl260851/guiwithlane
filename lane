@@ -7,18 +7,14 @@ import threading
 
 
 def draw_lines(img, lines):
-    """
-    Draws lines on an image.
-    """
+   
     for line in lines:
         for x1, y1, x2, y2 in line:
             cv2.line(img, (x1, y1), (x2, y2), (0, 255, 0), 3)
 
 
 def detect_lanes(frame):
-    """
-    Detects lanes in a given frame.
-    """
+   
     # Convert to grayscale
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     # Apply Gaussian blur
@@ -92,7 +88,6 @@ root.title("Lane Detection")
 video = Canvas(root, width=400, height=300, background='black')
 video.pack()
 
-# Start video processing in a thread to keep GUI responsive
 thread = threading.Thread(target=video_loop, args=())
 thread.start()
 
